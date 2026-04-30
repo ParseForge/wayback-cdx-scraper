@@ -1,0 +1,72 @@
+{
+  "title": "Wayback Machine CDX URL List Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "maxItems": {
+      "title": "Max Items",
+      "type": "integer",
+      "description": "Free users: Limited to 10 items (preview). Paid users: Optional, max 1,000,000.",
+      "editor": "number",
+      "prefill": 10,
+      "minimum": 1,
+      "maximum": 1000000
+    },
+    "url": {
+      "title": "URL or domain",
+      "type": "string",
+      "description": "Domain or URL to look up in the Wayback Machine. Examples: `apify.com`, `example.com/blog`, `https://news.ycombinator.com`.",
+      "editor": "textfield",
+      "prefill": "apify.com",
+      "sectionCaption": "Search",
+      "sectionDescription": "Specify the URL and optional filters for the Wayback Machine CDX query."
+    },
+    "matchType": {
+      "title": "Match type",
+      "type": "string",
+      "description": "How to match the URL: `exact` (exact URL only), `prefix` (URL plus all subpaths), `host` (entire host), or `domain` (host plus all subdomains).",
+      "editor": "select",
+      "enum": ["exact", "prefix", "host", "domain"],
+      "default": "domain",
+      "prefill": "domain"
+    },
+    "fromDate": {
+      "title": "From date (YYYYMMDD)",
+      "type": "string",
+      "description": "Earliest snapshot timestamp. Examples: `2020`, `202001`, `20200115`. Leave empty for the entire archive.",
+      "editor": "textfield"
+    },
+    "toDate": {
+      "title": "To date (YYYYMMDD)",
+      "type": "string",
+      "description": "Latest snapshot timestamp. Same format as From date.",
+      "editor": "textfield"
+    },
+    "statusCode": {
+      "title": "HTTP status code",
+      "type": "string",
+      "description": "Restrict to a specific status code, e.g. `200`, `404`, `301`. Leave empty for all status codes.",
+      "editor": "textfield"
+    },
+    "mimeType": {
+      "title": "MIME type",
+      "type": "string",
+      "description": "Filter by MIME type, e.g. `text/html`, `application/pdf`, `image/jpeg`. Leave empty for all.",
+      "editor": "textfield"
+    },
+    "collapse": {
+      "title": "Collapse duplicates",
+      "type": "string",
+      "description": "Collapse adjacent duplicate snapshots. Common values: `digest` (dedupe by content hash), `urlkey` (one entry per URL), `timestamp:6` (one per month).",
+      "editor": "textfield"
+    },
+    "uniqueOnly": {
+      "title": "Unique URLs only",
+      "type": "boolean",
+      "description": "When enabled, returns only the first snapshot per unique URL.",
+      "editor": "checkbox",
+      "default": false
+    }
+  },
+  "required": []
+}
